@@ -5,8 +5,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Abdulsalam M. Abubakar | Software Engineer',
   description:
-    'Software engineer building production web, mobile, and decentralized applications with React Native, Next.js, Node.js, and EVM smart contracts.',
-  generator: 'v0.app',
+    'I build mobile apps with React Native and Expo, web applications with Next.js and Node.js, and smart contracts with Solidity.',
   icons: {
     icon: [
       {
