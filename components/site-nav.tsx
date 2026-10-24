@@ -40,28 +40,25 @@ export function SiteNav() {
   }
 
   return (
+    <div className="sticky top-0 z-20 border-b border-white/10 bg-[#080b0d]">
     <nav
-      className="mx-auto w-full max-w-7xl px-6 lg:px-10"
+      className="mx-auto flex w-full max-w-6xl flex-col px-6 lg:px-8"
       aria-label="Main navigation"
     >
-      <div className="flex items-center justify-between py-6">
+      <div className="flex items-center justify-between py-4">
         <a
           href="#top"
           className="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
           aria-label="Abdulsalam M. Abubakar home"
         >
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-emerald-400/25 bg-emerald-400/10 text-emerald-300 shadow-[0_0_24px_rgba(52,211,153,0.12)]">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-emerald-300">
             <Code2 aria-hidden="true" className="size-4" />
           </span>
           <span className="min-w-0">
             <span className="block truncate text-sm font-semibold tracking-tight text-white">
               Abdulsalam M. Abubakar
             </span>
-            <span className="mt-0.5 hidden items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-[#7d8a87] sm:flex">
-              <span
-                className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"
-                aria-hidden="true"
-              />
+            <span className="mt-0.5 hidden text-xs text-[#8d9a95] sm:block">
               Open to roles and contract work
             </span>
           </span>
@@ -117,5 +114,6 @@ export function SiteNav() {
         </div>
       ) : null}
     </nav>
+    </div>
   )
 }
