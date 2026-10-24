@@ -32,6 +32,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="flex flex-1 flex-col p-6">
         <p className="text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300">
           {categoryLabel[project.category]}
+          {project.featured ? <span className="text-cyan-200"> · Featured</span> : null}
         </p>
         <h4 className="mt-4 text-xl font-semibold tracking-[-0.03em] text-white">
           {project.title}

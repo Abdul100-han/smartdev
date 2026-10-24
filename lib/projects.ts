@@ -1,7 +1,7 @@
 /**
- * Static project content for the public portfolio.
- * `getPublicProjects` is the read path the page uses, so a later database
- * can replace that function without changing the cards.
+ * Portfolio projects committed in this repository.
+ * Edit this file, then commit and push. See PROJECTS.md.
+ * The homepage reads `getPublicProjects` and skips entries with published: false.
  */
 
 export type ProjectCategory = 'production' | 'personal'
@@ -25,8 +25,11 @@ export type Project = {
   coverImage?: string
   /** Extra screenshots. The homepage does not render a gallery yet. */
   images?: readonly ProjectImage[]
-  featured?: boolean
+  featured: boolean
+  /** Lower numbers appear first within a category. */
   sortOrder: number
+  /** false keeps the project in this file and off the public page. */
+  published: boolean
 }
 
 export const categoryLabel: Record<ProjectCategory, string> = {
@@ -44,6 +47,7 @@ const projects: readonly Project[] = [
     tags: ['React Native', 'Expo', 'TypeScript', 'Node.js', 'AI APIs'],
     featured: true,
     sortOrder: 1,
+    published: true,
   },
   {
     slug: 'vennix-os',
@@ -54,6 +58,7 @@ const projects: readonly Project[] = [
     tags: ['React', 'Next.js', 'Node.js', 'MySQL', 'AI'],
     featured: true,
     sortOrder: 2,
+    published: true,
   },
   {
     slug: 'kantin-kwari-market-id',
@@ -64,6 +69,7 @@ const projects: readonly Project[] = [
     tags: ['Next.js', 'Node.js', 'PostgreSQL', 'QR'],
     featured: true,
     sortOrder: 3,
+    published: true,
   },
   {
     slug: 'fixkano',
@@ -74,6 +80,7 @@ const projects: readonly Project[] = [
     tags: ['React Native', 'React', 'Node.js', 'Geolocation'],
     featured: true,
     sortOrder: 4,
+    published: true,
   },
   {
     slug: 'nft-marketplace',
@@ -84,6 +91,7 @@ const projects: readonly Project[] = [
     tags: ['Solidity', 'Foundry', 'Next.js', 'EVM', 'Web3'],
     featured: false,
     sortOrder: 5,
+    published: true,
   },
   {
     slug: 'crowdfunding',
@@ -94,6 +102,7 @@ const projects: readonly Project[] = [
     tags: ['Solidity', 'Foundry', 'Next.js', 'TypeScript'],
     featured: false,
     sortOrder: 6,
+    published: true,
   },
   {
     slug: 'dao-voting',
@@ -104,6 +113,7 @@ const projects: readonly Project[] = [
     tags: ['Solidity', 'Foundry', 'Next.js', 'Web3'],
     featured: false,
     sortOrder: 7,
+    published: true,
   },
   {
     slug: 'erc-20-token-forge',
@@ -114,11 +124,16 @@ const projects: readonly Project[] = [
     tags: ['Solidity', 'Foundry', 'OpenZeppelin', 'Next.js'],
     featured: false,
     sortOrder: 8,
+    published: true,
   },
 ]
 
-export function getPublicProjects(): Project[] {
+export function getAllProjects(): Project[] {
   return [...projects].sort((a, b) => a.sortOrder - b.sortOrder)
+}
+
+export function getPublicProjects(): Project[] {
+  return getAllProjects().filter((project) => project.published)
 }
 
 export function getProjectsByCategory(category: ProjectCategory): Project[] {
