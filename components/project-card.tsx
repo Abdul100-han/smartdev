@@ -17,8 +17,8 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0e1312] transition-colors duration-200 hover:border-white/20 motion-reduce:transition-none">
-      <div className="aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#121816]">
-        {cover ? (
+      {cover ? (
+        <div className="aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#121816]">
           <img
             src={cover.src}
             alt={cover.alt}
@@ -28,12 +28,8 @@ export function ProjectCard({ project }: { project: Project }) {
             decoding="async"
             className="h-full w-full object-cover object-top"
           />
-        ) : (
-          <div className="flex h-full items-end p-6">
-            <p className="text-sm text-[#8d9a95]">No screenshot yet</p>
-          </div>
-        )}
-      </div>
+        </div>
+      ) : null}
       <div className="flex flex-1 flex-col p-6">
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-emerald-300">
           {category}
