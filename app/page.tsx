@@ -1,162 +1,30 @@
-import {
-  Check,
-  Code2,
-  Database,
-  Layers3,
-  Mail,
-  MapPin,
-  Phone,
-  Smartphone,
-  WalletCards,
-} from 'lucide-react'
+import { ChevronDown, Mail, MapPin, Phone } from 'lucide-react'
 
 import { ProjectCard } from '@/components/project-card'
 import { SiteNav } from '@/components/site-nav'
 import { GitHubIcon, LinkedInIcon } from '@/components/social-icons'
 import { getProjectsByCategory } from '@/lib/projects'
+import {
+  aboutParagraphs,
+  availability,
+  email,
+  experience,
+  formalEducation,
+  githubUrl,
+  heroTechnologies,
+  highlights,
+  linkedInUrl,
+  location,
+  navItems,
+  phoneDisplay,
+  phoneHref,
+  skillGroups,
+  training,
+  type Role,
+} from '@/lib/profile'
 import { cn } from '@/lib/utils'
 
-const email = 'abdulmuhd857@gmail.com'
-const githubUrl = 'https://github.com/Abdul100-han'
-const linkedInUrl = 'https://linkedin.com/in/abdulsalam-muhammad-abubakar-90375a1ba'
-
 const containerClassName = 'mx-auto w-full max-w-6xl px-6 lg:px-8'
-const tagClassName = 'rounded-md bg-white/[0.06] px-2 py-1 text-xs text-[#c5d0cc]'
-
-const focusAreas = [
-  'Web and mobile products, from the interface through the API',
-  'Solidity contracts tested with Foundry',
-  'Releases on Google Play and the App Store',
-  'Model API integrations with OpenAI, Gemini, and Hugging Face',
-]
-
-const skillGroups = [
-  {
-    title: 'Frontend development',
-    icon: Layers3,
-    skills: [
-      'React.js',
-      'Next.js',
-      'TypeScript',
-      'Tailwind CSS',
-      'Shadcn/UI',
-      'Redux Toolkit',
-    ],
-  },
-  {
-    title: 'Mobile development',
-    icon: Smartphone,
-    skills: [
-      'React Native',
-      'Expo',
-      'TypeScript',
-      'EAS Build/Submit',
-      'NativeWind',
-      'Android',
-      'iOS',
-    ],
-  },
-  {
-    title: 'Backend and APIs',
-    icon: Code2,
-    skills: [
-      'Node.js',
-      'Express.js',
-      'FastAPI (Python)',
-      'REST APIs',
-      'WebSockets',
-      'Axios',
-      'Event-Driven Architecture',
-    ],
-  },
-  {
-    title: 'Databases and infrastructure',
-    icon: Database,
-    skills: [
-      'PostgreSQL',
-      'MySQL',
-      'MongoDB',
-      'Prisma',
-      'Firebase',
-      'Appwrite',
-      'Git',
-      'GitHub',
-      'Docker',
-      'Vercel',
-      'Postman',
-      'Cursor',
-      'Play Console',
-      'App Store Connect',
-    ],
-  },
-  {
-    title: 'Blockchain',
-    icon: WalletCards,
-    skills: [
-      'Solidity',
-      'Foundry/Forge',
-      'Ethereum & EVM',
-      'OpenZeppelin',
-      'Chainlink',
-      'Web3/dApp Development',
-      'WalletConnect',
-      'Smart Contract Testing',
-    ],
-  },
-]
-
-const experience = [
-  {
-    role: 'Mobile App Developer / Lead Mobile Engineer',
-    company: 'Iltizaam AI',
-    meta: 'Lagos, Nigeria · Contract',
-    points: [
-      'Led end-to-end development of a production React Native/Expo app for goals, AI motivation, mood tracking, and focus mode.',
-      'Integrated Node.js/Express APIs with state management, validation, error handling, and push notifications.',
-      'Built and published production releases on Google Play Store and Apple App Store.',
-    ],
-    tags: ['React Native', 'Expo', 'TypeScript', 'Node.js', 'App Store Connect'],
-  },
-  {
-    role: 'Software Engineer',
-    company: 'Epipy Limited',
-    meta: 'Abuja, Nigeria',
-    points: [
-      'Developed a multi-tenant Farm Performance Intelligence Platform for farm operations and analytics.',
-      'Implemented role-based access, SOP repositories, task workflows, and audit logging.',
-    ],
-    tags: ['PostgreSQL', 'Next.js', 'TypeScript', 'RBAC', 'Audit Systems'],
-  },
-  {
-    role: 'Software Engineer',
-    company: 'STEDI-AI Framework',
-    meta: 'Doha, Qatar · Contract',
-    points: [
-      'Built and maintained a FastAPI backend for security technical debt analysis across OpenAI, Gemini, and Hugging Face.',
-      'Designed multi-provider evaluation logic, security calculations, and production JWT/OAuth authentication.',
-    ],
-    tags: ['Python', 'FastAPI', 'Next.js', 'PostgreSQL', 'OpenAI', 'Gemini'],
-  },
-  {
-    role: 'Software Engineer',
-    company: 'Vennix OS',
-    meta: 'Kano, Nigeria · Contract',
-    points: [
-      'Architected an AI-powered business operations platform covering CRM, finance, HR, payroll, projects, and reporting.',
-      'Integrated Paystack payments, document generation, customer portals, and AI business insights.',
-    ],
-    tags: ['React', 'Next.js', 'Node.js', 'MySQL', 'AI Integrations'],
-  },
-  {
-    role: 'Software Engineer / Technical Lead',
-    company: 'FixKano Platform',
-    meta: 'Kano, Nigeria · Contract',
-    points: [
-      'Led technical delivery of a civic technology platform connecting citizens and government agencies through geolocation-based reporting.',
-    ],
-    tags: ['React Native', 'React', 'Node.js', 'REST APIs', 'Geolocation'],
-  },
-]
 
 const focusRingClassName =
   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300'
@@ -182,10 +50,18 @@ const contactLinkClassName = cn(
 const contactIconClassName =
   'flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-emerald-300'
 
-function Section({ id, children }: { id: string; children: React.ReactNode }) {
+function Section({
+  id,
+  children,
+  className,
+}: {
+  id: string
+  children: React.ReactNode
+  className?: string
+}) {
   return (
-    <section id={id} className="scroll-mt-16 border-t border-white/10">
-      <div className={cn(containerClassName, 'py-16 md:py-20')}>{children}</div>
+    <section id={id} className={cn('scroll-mt-24 border-t border-white/10', className)}>
+      <div className={cn(containerClassName, 'py-16 md:py-24')}>{children}</div>
     </section>
   )
 }
@@ -193,28 +69,86 @@ function Section({ id, children }: { id: string; children: React.ReactNode }) {
 function SectionIntro({
   eyebrow,
   title,
-  description,
+  children,
 }: {
   eyebrow: string
   title: string
-  description: string
+  children?: React.ReactNode
 }) {
   return (
-    <div className="mb-10 max-w-2xl">
+    <div className="mb-10 max-w-3xl md:mb-12">
       <p className="mb-3 text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
         {eyebrow}
       </p>
-      <h2 className="text-3xl font-semibold tracking-[-0.03em] text-balance text-white">
+      <h2 className="text-3xl font-semibold tracking-[-0.03em] text-balance text-white sm:text-4xl">
         {title}
       </h2>
-      <p className="mt-4 text-base leading-7 text-pretty text-[#b7c2bd]">{description}</p>
+      {children ? (
+        <div className="mt-4 text-base leading-7 text-pretty text-[#b7c2bd]">{children}</div>
+      ) : null}
     </div>
+  )
+}
+
+function ExperienceItem({ job }: { job: Role }) {
+  const hasDetails = Boolean(job.points?.length || job.tags?.length)
+
+  return (
+    <article className="py-5 sm:py-6">
+      <h3 className="text-base font-semibold text-white sm:text-lg">{job.role}</h3>
+      <p className="mt-1 text-sm text-emerald-300">{job.organization}</p>
+      {job.meta ? <p className="mt-1 text-sm text-[#8d9a95]">{job.meta}</p> : null}
+      {hasDetails ? (
+        <details className="group">
+          <summary
+            className={cn(
+              'mt-3 inline-flex cursor-pointer list-none items-center gap-1.5 rounded-md text-sm text-[#c5d0cc] hover:text-white [&::-webkit-details-marker]:hidden',
+              focusRingClassName,
+            )}
+          >
+            <span className="group-open:hidden">Show details</span>
+            <span className="hidden group-open:inline">Hide details</span>
+            <ChevronDown
+              className="size-4 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
+              aria-hidden="true"
+            />
+          </summary>
+          {job.points?.length ? (
+            <ul className="mt-4 flex max-w-3xl flex-col gap-2 text-sm leading-6 text-[#b7c2bd]">
+              {job.points.map((point) => (
+                <li key={point} className="flex gap-3">
+                  <span
+                    className="mt-2.5 size-1 shrink-0 rounded-full bg-emerald-300/70"
+                    aria-hidden="true"
+                  />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          {job.tags?.length ? (
+            <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
+              {job.tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="rounded-md border border-white/10 px-2 py-1 text-xs text-[#c5d0cc]"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </details>
+      ) : null}
+    </article>
   )
 }
 
 export default function Page() {
   const productionProjects = getProjectsByCategory('production')
-  const personalProjects = getProjectsByCategory('personal')
+  const web3Projects = getProjectsByCategory('web3')
+  const featuredProjects = productionProjects.filter((project) => project.featured)
+  const otherProjects = productionProjects.filter((project) => !project.featured)
 
   return (
     <div className="min-h-screen bg-[#080b0d] text-[#f3f6f4] selection:bg-emerald-400/30 selection:text-emerald-100">
@@ -226,62 +160,81 @@ export default function Page() {
       </a>
       <SiteNav />
 
-      <main id="content" className="scroll-mt-16">
-        <section id="top" className="scroll-mt-16">
+      <main id="content">
+        <section id="top" className="scroll-mt-24">
           <div
             className={cn(
               containerClassName,
-              'grid items-center gap-8 pb-16 pt-12 md:pb-20 md:pt-20 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_22rem]',
+              'grid items-center gap-10 pb-14 pt-12 md:pb-16 md:pt-16 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_22rem]',
             )}
           >
             <div>
               <p className="text-sm font-medium text-emerald-300">Abdulsalam M. Abubakar</p>
-              <h1 className="mt-3 max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-balance text-white sm:text-6xl lg:text-7xl">
-                I build web apps, mobile apps, and APIs.
+              <p className="mt-2 text-sm text-[#9aa6a1]">
+                Software Engineer · Full-stack & mobile · Blockchain & Web3
+              </p>
+              <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.03em] text-balance text-white sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
+                Software Engineer building web, mobile & full-stack products.
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-pretty text-[#b7c2bd] sm:text-lg sm:leading-8">
-                I use React Native and Expo for mobile, Next.js and Node.js for web
-                applications, and Solidity for smart contracts. I like taking a
-                product from the first working version through to release.
+                I have 5 years of experience building software, from business platforms
+                and mobile applications to backend systems and AI-powered products. I
+                work across the stack, turning product requirements into reliable
+                applications that are ready for real-world use.
               </p>
+              <ul className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#d5deda]" aria-label="Key technologies">
+                {heroTechnologies.map((technology, index) => (
+                  <li key={technology} className="flex items-center gap-3">
+                    {index > 0 ? (
+                      <span aria-hidden="true" className="text-white/25">
+                        /
+                      </span>
+                    ) : null}
+                    {technology}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href="#projects" className={primaryCtaClassName}>
-                  View projects
+                  View My Work
                 </a>
                 <a href="#contact" className={secondaryCtaClassName}>
-                  Get in touch
+                  Get in Touch
                 </a>
               </div>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[#8d9a95]">
-                <span className="inline-flex items-center gap-2">
+              <div className="mt-8 flex flex-col gap-3 text-sm text-[#8d9a95]">
+                <p className="inline-flex items-center gap-2">
                   <MapPin className="size-4 text-emerald-300" aria-hidden="true" />
-                  Kano, Nigeria · Open to remote and contract work
-                </span>
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={textLinkClassName}
-                >
-                  <GitHubIcon className="size-4" />
-                  GitHub
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-                <a
-                  href={linkedInUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={textLinkClassName}
-                >
-                  <LinkedInIcon className="size-4" />
-                  LinkedIn
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
+                  {location}
+                </p>
+                <p>{availability}</p>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={textLinkClassName}
+                  >
+                    <GitHubIcon className="size-4" />
+                    GitHub
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  <a
+                    href={linkedInUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={textLinkClassName}
+                  >
+                    <LinkedInIcon className="size-4" />
+                    LinkedIn
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </div>
               </div>
             </div>
 
             <div className="order-first lg:order-none">
-              <div className="h-28 w-28 overflow-hidden rounded-full border border-white/10 bg-[#121816] sm:h-32 sm:w-32 lg:aspect-square lg:h-auto lg:w-full lg:rounded-2xl lg:shadow-[0_24px_80px_-24px_rgba(52,211,153,0.3)]">
+              <div className="h-28 w-28 overflow-hidden rounded-full border border-white/10 bg-[#121816] sm:h-32 sm:w-32 lg:aspect-square lg:h-auto lg:w-full lg:rounded-2xl">
                 <img
                   src="/me-2.jpeg"
                   alt="Portrait of Abdulsalam M. Abubakar"
@@ -296,198 +249,176 @@ export default function Page() {
           </div>
         </section>
 
-        <Section id="about">
-          <SectionIntro
-            eyebrow="01 / About"
-            title="Mobile, web, APIs, and Solidity."
-            description="I work across mobile applications, web platforms, backend APIs, model integrations, and smart contracts. I helped lead Iltizaam, a React Native app, through release on Google Play and the App Store. On Vennix I integrated Paystack, document generation, and a customer portal. I also led delivery of FixKano, a civic reporting platform, and built a FastAPI service that runs evaluations across OpenAI, Gemini, and Hugging Face. I write Solidity and test it with Foundry."
-          />
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {focusAreas.map((item) => (
-              <li
-                key={item}
-                className="flex gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-6 text-[#d5deda]"
-              >
-                <Check className="mt-1 size-4 shrink-0 text-emerald-300" aria-hidden="true" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section id="skills">
-          <SectionIntro
-            eyebrow="02 / Skills"
-            title="Technologies I work with"
-            description="The languages, frameworks, and tools behind the projects and roles on this page."
-          />
-          <div className="grid gap-4 md:grid-cols-2">
-            {skillGroups.map((group) => {
-              const Icon = group.icon
-              return (
-                <article
-                  key={group.title}
-                  className="rounded-xl border border-white/10 bg-white/[0.03] p-6 md:last:odd:col-span-2"
+        <section id="highlights" className="scroll-mt-24 border-t border-white/10">
+          <div className={cn(containerClassName, 'py-8 md:py-10')}>
+            <h2 className="sr-only">Professional highlights</h2>
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4 lg:gap-0">
+              {highlights.map((item, index) => (
+                <li
+                  key={item.value}
+                  className={cn(
+                    'lg:px-8',
+                    index > 0 && 'lg:border-l lg:border-white/10',
+                    index === 0 && 'lg:pl-0',
+                    index === highlights.length - 1 && 'lg:pr-0',
+                  )}
                 >
-                  <div className="mb-4 flex items-center gap-3">
-                    <Icon className="size-4 text-emerald-300" aria-hidden="true" />
-                    <h3 className="font-medium text-white">{group.title}</h3>
-                  </div>
-                  <ul className="flex flex-wrap gap-2">
-                    {group.skills.map((skill) => (
-                      <li key={skill} className={tagClassName}>
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              )
-            })}
+                  <p className="text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
+                    {item.value}
+                  </p>
+                  <p className="mt-2 max-w-[14rem] text-sm leading-6 text-[#b7c2bd]">
+                    {item.label}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
-        </Section>
+        </section>
 
         <Section id="projects">
-          <SectionIntro
-            eyebrow="03 / Projects"
-            title="Selected projects"
-            description="Production work I have shipped or helped build, then personal Solidity projects."
-          />
-          <h3 className="mb-5 text-lg font-semibold text-white">Production work</h3>
-          <div className="grid gap-4 md:grid-cols-2">
-            {productionProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-          <div className="mb-5 mt-14 max-w-2xl">
-            <h3 className="text-lg font-semibold text-white">Personal blockchain projects</h3>
-            <p className="mt-2 text-sm leading-6 text-[#b7c2bd]">
-              Solidity contracts, Foundry tests, and wallet connections.
+          <SectionIntro eyebrow="Selected work" title="Selected projects">
+            <p>
+              Production software I have helped build and ship. Smart contract work is in{' '}
+              <a href="#web3" className="text-white underline-offset-4 hover:underline">
+                Blockchain &amp; Web3
+              </a>.
             </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {personalProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
+          </SectionIntro>
+          <p className="mb-5 text-sm font-medium uppercase tracking-[0.14em] text-[#8d9a95]">
+            Production projects
+          </p>
+          {featuredProjects.length > 0 ? (
+            <div className="grid gap-5 lg:grid-cols-2">
+              {featuredProjects.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          ) : null}
+          {otherProjects.length > 0 ? (
+            <div className={cn('grid gap-5 md:grid-cols-2', featuredProjects.length > 0 && 'mt-5')}>
+              {otherProjects.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          ) : null}
         </Section>
 
         <Section id="experience">
-          <SectionIntro
-            eyebrow="04 / Experience"
-            title="Experience"
-            description="Mobile, SaaS, AI infrastructure, business software, and civic technology."
-          />
-          <div className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.015]">
+          <SectionIntro eyebrow="Career" title="Professional experience">
+            <p>
+              Roles across mobile products, business platforms, AI systems, and civic
+              technology.
+            </p>
+          </SectionIntro>
+          <div className="divide-y divide-white/10 border-y border-white/10">
             {experience.map((job) => (
-              <article
-                key={`${job.company}-${job.role}`}
-                className="border-b border-white/10 p-6 last:border-b-0 sm:p-8"
-              >
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">{job.role}</h3>
-                    <p className="mt-1 text-sm font-medium text-emerald-300">{job.company}</p>
-                  </div>
-                  <p className="shrink-0 text-sm text-[#8d9a95] sm:pt-1">{job.meta}</p>
-                </div>
-                <ul className="mt-4 flex max-w-3xl flex-col gap-2 text-sm leading-6 text-[#b7c2bd]">
-                  {job.points.map((point) => (
-                    <li key={point} className="flex gap-3">
-                      <span
-                        className="mt-2.5 size-1 shrink-0 rounded-full bg-emerald-300/70"
-                        aria-hidden="true"
-                      />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-                <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">
-                  {job.tags.map((tag) => (
-                    <li key={tag} className={tagClassName}>
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
+              <ExperienceItem key={`${job.organization}-${job.role}`} job={job} />
+            ))}
+          </div>
+        </Section>
+
+        <Section id="expertise">
+          <SectionIntro eyebrow="Skills" title="Technical expertise">
+            <p>The languages, frameworks, and tools I use on the products and roles above.</p>
+          </SectionIntro>
+          <div className="grid gap-x-16 gap-y-8 sm:grid-cols-2">
+            {skillGroups.map((group) => (
+              <article key={group.title} className="border-t border-white/10 pt-5">
+                <h3 className="text-base font-semibold text-white">{group.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[#c5d0cc]">
+                  {group.skills.join(', ')}
+                </p>
               </article>
             ))}
           </div>
         </Section>
 
+        <Section id="web3">
+          <SectionIntro eyebrow="Blockchain" title="Blockchain & Web3">
+            <p>
+              Alongside my full-stack and mobile engineering work, I&apos;m developing my
+              specialization in Blockchain and Web3. My work focuses on Solidity smart
+              contracts, EVM development, contract testing with Foundry, and building
+              decentralized applications that connect smart contracts to frontend
+              interfaces.
+            </p>
+          </SectionIntro>
+          <div className="grid gap-5 md:grid-cols-2">
+            {web3Projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </Section>
+
+        <Section id="about">
+          <SectionIntro eyebrow="Profile" title="About me" />
+          <div className="max-w-3xl space-y-5 text-base leading-7 text-[#d5deda]">
+            {aboutParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </Section>
+
         <Section id="education">
-          <SectionIntro
-            eyebrow="05 / Education"
-            title="Education and training"
-            description="Blockchain training from Cyfrin Updraft and Alchemy University, and an HND in Mechanical Engineering from Kano State Polytechnic."
-          />
-          <div className="grid gap-4 lg:grid-cols-3">
-            <article className="rounded-xl border border-white/10 bg-white/[0.03] p-6 lg:col-span-2">
-              <h3 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
-                Training
-              </h3>
-              <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div>
-                  <h4 className="text-lg font-semibold text-white">Cyfrin Updraft</h4>
-                  <p className="mt-2 text-sm leading-6 text-[#b7c2bd]">
-                    Blockchain Developer, Smart Contract & Solidity Career Path
-                    (Foundry Edition).
-                  </p>
-                  <p className="mt-3 text-xs leading-5 text-[#8d9a95]">
-                    Solidity · EVM · Foundry · Chainlink · DeFi · Gas optimization ·
-                    Auditing
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-white">Alchemy University</h4>
-                  <p className="mt-2 text-sm leading-6 text-[#b7c2bd]">
-                    Blockchain / Ethereum Developer Program focused on Web3
-                    infrastructure and dApp architecture.
-                  </p>
-                  <p className="mt-3 text-xs leading-5 text-[#8d9a95]">
-                    Ethereum · Web3 infrastructure · dApp architecture
-                  </p>
-                </div>
-              </div>
-            </article>
-            <article className="rounded-xl border border-white/10 bg-white/[0.03] p-6">
+          <SectionIntro eyebrow="Background" title="Education and professional development">
+            <p>
+              An HND in Mechanical Engineering, and blockchain training from Cyfrin
+              Updraft and Alchemy University.
+            </p>
+          </SectionIntro>
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+            <article>
               <h3 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
                 Formal education
               </h3>
-              <h4 className="mt-6 text-lg font-semibold text-white">
-                Higher National Diploma (HND)
+              <h4 className="mt-4 text-xl font-semibold tracking-[-0.02em] text-white">
+                {formalEducation.qualification}
               </h4>
-              <p className="mt-2 text-sm leading-6 text-[#b7c2bd]">
-                Mechanical Engineering (Plant & Power)
-              </p>
-              <p className="mt-3 text-xs leading-5 text-[#8d9a95]">
-                Kano State Polytechnic · Kano, Nigeria
-              </p>
+              <p className="mt-2 text-sm leading-6 text-[#d5deda]">{formalEducation.field}</p>
+              <p className="mt-2 text-sm leading-6 text-[#8d9a95]">{formalEducation.school}</p>
+            </article>
+            <article>
+              <h3 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
+                Professional development
+              </h3>
+              <div className="mt-4 divide-y divide-white/10 border-t border-white/10">
+                {training.map((item) => (
+                  <div key={item.provider} className="py-5 first:pt-5">
+                    <h4 className="text-lg font-semibold text-white">{item.provider}</h4>
+                    <p className="mt-2 text-sm leading-6 text-[#d5deda]">{item.program}</p>
+                    {'status' in item && item.status ? (
+                      <p className="mt-2 text-sm text-emerald-300">{item.status}</p>
+                    ) : null}
+                    <p className="mt-2 text-sm leading-6 text-[#8d9a95]">{item.topics}</p>
+                  </div>
+                ))}
+              </div>
             </article>
           </div>
         </Section>
 
         <Section id="contact">
-          <SectionIntro
-            eyebrow="06 / Contact"
-            title="Open to roles and project work"
-            description="I am open to engineering roles and to conversations about software you want built. Email is the best way to reach me."
-          />
-          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-            <a
-              href={`mailto:${email}`}
-              className={cn(primaryCtaClassName, 'w-full break-all sm:w-auto')}
-            >
+          <SectionIntro eyebrow="Contact" title="Let's build something useful.">
+            <p>
+              I&apos;m open to software engineering opportunities, remote roles, and contract
+              projects. If you&apos;re building a product or looking for an engineer to join
+              your team, I&apos;d be happy to hear from you.
+            </p>
+          </SectionIntro>
+          <div className="max-w-3xl">
+            <a href={`mailto:${email}`} className={cn(primaryCtaClassName, 'w-full break-all sm:w-auto')}>
               <Mail className="size-4 shrink-0" aria-hidden="true" />
               {email}
             </a>
             <ul className="mt-8 grid gap-5 sm:grid-cols-2">
               <li>
-                <a href="tel:+2348039688857" className={contactLinkClassName}>
+                <a href={phoneHref} className={contactLinkClassName}>
                   <span className={contactIconClassName}>
                     <Phone className="size-4" aria-hidden="true" />
                   </span>
                   <span>
                     <span className="block text-xs text-[#8d9a95]">Phone</span>
-                    +234 803 968 8857
+                    {phoneDisplay}
                   </span>
                 </a>
               </li>
@@ -497,7 +428,7 @@ export default function Page() {
                 </span>
                 <span>
                   <span className="block text-xs text-[#8d9a95]">Location</span>
-                  Kano, Nigeria · Open to remote work and relocation
+                  {location}
                 </span>
               </li>
               <li>
@@ -548,21 +479,11 @@ export default function Page() {
         >
           <p>© {new Date().getFullYear()} Abdulsalam Muhammad Abubakar.</p>
           <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <a href="#about" className={textLinkClassName}>
-              About
-            </a>
-            <a href="#skills" className={textLinkClassName}>
-              Skills
-            </a>
-            <a href="#projects" className={textLinkClassName}>
-              Projects
-            </a>
-            <a href="#experience" className={textLinkClassName}>
-              Experience
-            </a>
-            <a href="#education" className={textLinkClassName}>
-              Education
-            </a>
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className={textLinkClassName}>
+                {item.label}
+              </a>
+            ))}
             <a href="#contact" className={textLinkClassName}>
               Contact
             </a>

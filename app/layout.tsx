@@ -13,9 +13,10 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : 'http://localhost:3000'
 
-const title = 'Abdulsalam M. Abubakar | Software Engineer'
+const title =
+  'Abdulsalam M. Abubakar | Software Engineer, Full-Stack & Mobile Developer'
 const description =
-  'I build web applications with Next.js, mobile apps with React Native and Expo, APIs with Node.js, and smart contracts with Solidity.'
+  'Portfolio of Abdulsalam Muhammad Abubakar, a Software Engineer with 5 years of experience building web applications, mobile products, backend systems, AI integrations, and Blockchain/Web3 applications.'
 const ogImage = {
   url: '/me-2.jpeg',
   width: 741,

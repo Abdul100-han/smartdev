@@ -28,10 +28,12 @@ function ProjectPreview({ project }: { project: Project }) {
       </h2>
       <dl className="mt-4 flex flex-col gap-2">
         {field('Slug', project.slug)}
+        {field('Category', project.category)}
         {field('On the site', project.published ? 'Visible' : 'Hidden')}
         {field('Featured', project.featured ? 'Yes' : 'No')}
+        {field('Status', project.status ?? 'Not set')}
         {field('Order', String(project.sortOrder))}
-        {field('Cover', cover ? cover.src : 'Not set')}
+        {field('Cover', cover ? cover.src : 'Not set. The card shows a placeholder.')}
         {field(
           'More images',
           project.images && project.images.length > 0
@@ -40,6 +42,9 @@ function ProjectPreview({ project }: { project: Project }) {
         )}
         {field('Live URL', project.liveUrl ?? 'Not set')}
         {field('Repository', project.repoUrl ?? 'Not set')}
+        {field('Case study', project.caseStudyUrl ?? 'Not set')}
+        {field('Contract notes', project.chainNotes ?? 'Not set')}
+        {field('Contribution', project.contribution ?? 'Not set')}
         {field('Description', project.description ? 'Stored, not shown on the card' : 'Not set')}
       </dl>
       {project.description ? (

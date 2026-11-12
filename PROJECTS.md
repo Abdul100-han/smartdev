@@ -1,19 +1,23 @@
 # Managing portfolio projects
 
-Project changes live in this Git repository. Push them to GitHub and Vercel deploys the site. There is no project editor that saves from the browser. A static site cannot write files into the repo or store uploads on Vercel.
+Project changes live in this Git repository. Push them to GitHub and Vercel deploys the site. There is no project editor that saves from the browser.
 
 ## Where things live
 
 | What | Where |
 | --- | --- |
 | Project text, links, order, and image paths | `lib/projects.ts` |
+| Profile, experience, and skills | `lib/profile.ts` |
 | Screenshot files | `public/projects/` |
-| Public cards | Homepage section `#projects` |
+| Production cards | Homepage section `#projects` |
+| Blockchain cards | Homepage section `#web3` |
 | Local preview, including hidden drafts | `http://localhost:3000/project-manager` while `npm run dev` is running |
 
-The homepage calls `getPublicProjects()` and shows entries with `published: true`. Cards show `summary`, the technology `tags`, a cover when `coverImage` or the first extra image exists, and a link only when that URL is set.
+The homepage calls `getPublicProjects()` and shows entries with `published: true`. A card shows `summary`, `contribution` when set, `status`, the technology `tags`, and a link only when that URL is set.
 
-`description` is stored on the project and is not shown on the public card. Put the text visitors should read in `summary`. The local preview shows `description` when you set it.
+If `coverImage` and `images` are both empty, the card shows a labeled placeholder. That placeholder is not a screenshot. Do not point `coverImage` at a stock image or an illustration and leave the alt text calling it a screenshot.
+
+`description` is stored on the project and is not shown on the public card. Put the text visitors should read in `summary`.
 
 ## Add a project
 
@@ -22,16 +26,17 @@ The homepage calls `getPublicProjects()` and shows entries with `published: true
 3. Preview with `npm run dev`.
 4. Commit and push.
 
-Use a new `slug`. Leave `liveUrl` and `repoUrl` off until you have the real address. Leave `coverImage` off until the file is in `public/projects/`. A path with no file shows a broken image.
+Use a new `slug`. Leave `liveUrl`, `repoUrl`, and `caseStudyUrl` off until you have the real address. Leave `chainNotes` off until the network or contract detail is verified. Leave `coverImage` off until the file is in `public/projects/`. A path with no file shows a broken image.
 
 ```ts
 {
   slug: 'example-app',
   title: 'Example App',
   summary: 'One or two sentences visitors read on the card.',
-  description:
-    'Optional longer notes. The homepage card does not show this field.',
-  category: 'production', // or 'personal'
+  contribution: 'What you specifically built. Omit this until you can state it.',
+  description: 'Optional longer notes. The homepage card does not show this field.',
+  category: 'production', // or 'web3'
+  status: 'Production',
   tags: ['Next.js', 'TypeScript', 'PostgreSQL'],
   coverImage: '/projects/example-app.png',
   images: [
@@ -42,27 +47,32 @@ Use a new `slug`. Leave `liveUrl` and `repoUrl` off until you have the real addr
   ],
   liveUrl: 'https://example.com',
   repoUrl: 'https://github.com/Abdul100-han/example-app',
+  caseStudyUrl: 'https://example.com/case-study',
   featured: false,
-  sortOrder: 9,
+  sortOrder: 16,
   published: false,
 }
 ```
 
 `coverImage` is the public URL, not the disk path. The file `public/projects/example-app.png` is referenced as `/projects/example-app.png`.
 
-The cover’s alternative text is the project title followed by “screenshot”. Extra images use the `alt` you write. Delete `liveUrl` and `repoUrl` until those addresses are real, and do not publish the example slug.
+The cover’s alternative text is the project title followed by “screenshot”. Extra images use the `alt` you write. Delete URL fields until those addresses are real, and do not publish the example slug.
 
 Set `published` to `true` when the card should appear on the homepage. `published: false` keeps the entry in the file and hides it from visitors. You can still see it at `/project-manager` during local development.
 
-`category: 'production'` places the card under Production work. `category: 'personal'` places it under Personal blockchain projects.
+`category: 'production'` places the card under Selected projects. `category: 'web3'` places it under Blockchain & Web3.
 
-`sortOrder` controls order inside that group. Lower numbers come first. It does not move a project between groups.
+`sortOrder` controls order inside that group. Lower numbers come first.
 
-`featured: true` adds a Featured label on the card. It does not change the order.
+`featured: true` gives a production project the larger slot at the top of Selected projects. It does not add a public “Featured” label.
+
+Four production drafts are already in the file with `published: false`: Dan Ziyal Academy & Consultancy, Shareef NiceHome, STEDi-AI Framework, and Invoice Management Platform. Replace the TODO summary before setting `published` to `true`.
 
 ## Update a project
 
 Change the fields on that object in `lib/projects.ts`. To replace a screenshot, add the new file under `public/projects/`, point `coverImage` at it, and delete the old file if nothing else uses it.
+
+To add another screenshot, append to `images`. The card shows those files under the summary, and it skips an image whose `src` is already the cover.
 
 ## Remove a project
 
