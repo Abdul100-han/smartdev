@@ -236,7 +236,7 @@ export default function Page() {
           >
             <div>
               <p className="text-sm font-medium text-emerald-300">Abdulsalam M. Abubakar</p>
-              <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-[-0.03em] text-balance text-white sm:text-5xl">
+              <h1 className="mt-3 max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-balance text-white sm:text-6xl lg:text-7xl">
                 I build web apps, mobile apps, and APIs.
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-pretty text-[#b7c2bd] sm:text-lg sm:leading-8">
