@@ -169,19 +169,19 @@ export default function Page() {
             )}
           >
             <div>
-              <div className="flex items-center gap-4">
-                <div className="size-14 shrink-0 overflow-hidden rounded-full border border-white/10 bg-[#121816] sm:size-16 lg:hidden">
+              <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+                <div className="size-44 overflow-hidden rounded-full border border-white/10 bg-[#121816] sm:size-52 lg:hidden">
                   <img
                     src="/me-2.jpeg"
                     alt="Portrait of Abdulsalam M. Abubakar"
-                    width={160}
-                    height={160}
+                    width={416}
+                    height={416}
                     fetchPriority="high"
                     decoding="async"
                     className="h-full w-full object-cover object-[50%_20%]"
                   />
                 </div>
-                <div className="min-w-0">
+                <div className="mt-5 lg:mt-0">
                   <p className="text-sm font-medium text-emerald-300 sm:text-base">
                     Abdulsalam M. Abubakar
                   </p>
