@@ -28,7 +28,7 @@ const actionClassName =
 
 function ProjectPlaceholder({ title }: { title: string }) {
   return (
-    <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-white/10 bg-[#101614]">
+    <div className="relative flex aspect-[2/1] items-center justify-center overflow-hidden border-b border-white/10 bg-[#101614] sm:aspect-[16/10]">
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-80 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(circle_at_center,black,transparent_75%)]"

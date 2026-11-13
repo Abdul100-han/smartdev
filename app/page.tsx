@@ -24,7 +24,7 @@ import {
 } from '@/lib/profile'
 import { cn } from '@/lib/utils'
 
-const containerClassName = 'mx-auto w-full max-w-6xl px-6 lg:px-8'
+const containerClassName = 'mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8'
 
 const focusRingClassName =
   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300'
@@ -60,8 +60,8 @@ function Section({
   className?: string
 }) {
   return (
-    <section id={id} className={cn('scroll-mt-24 border-t border-white/10', className)}>
-      <div className={cn(containerClassName, 'py-16 md:py-24')}>{children}</div>
+    <section id={id} className={cn('scroll-mt-20 border-t border-white/10', className)}>
+      <div className={cn(containerClassName, 'py-12 sm:py-16 md:py-24')}>{children}</div>
     </section>
   )
 }
@@ -80,7 +80,7 @@ function SectionIntro({
       <p className="mb-3 text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
         {eyebrow}
       </p>
-      <h2 className="text-3xl font-semibold tracking-[-0.03em] text-balance text-white sm:text-4xl">
+      <h2 className="text-[1.75rem] font-semibold leading-tight tracking-[-0.03em] text-balance text-white sm:text-4xl">
         {title}
       </h2>
       {children ? (
@@ -161,44 +161,64 @@ export default function Page() {
       <SiteNav />
 
       <main id="content">
-        <section id="top" className="scroll-mt-24">
+        <section id="top" className="scroll-mt-20">
           <div
             className={cn(
               containerClassName,
-              'grid items-center gap-10 pb-14 pt-12 md:pb-16 md:pt-16 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_22rem]',
+              'grid items-center gap-8 pb-12 pt-8 sm:gap-10 sm:pb-14 sm:pt-12 md:pb-16 md:pt-16 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_22rem]',
             )}
           >
             <div>
-              <p className="text-sm font-medium text-emerald-300">Abdulsalam M. Abubakar</p>
-              <p className="mt-2 text-sm text-[#9aa6a1]">
-                Software Engineer · Full-stack & mobile · Blockchain & Web3
+              <div className="flex items-center gap-4">
+                <div className="size-14 shrink-0 overflow-hidden rounded-full border border-white/10 bg-[#121816] sm:size-16 lg:hidden">
+                  <img
+                    src="/me-2.jpeg"
+                    alt="Portrait of Abdulsalam M. Abubakar"
+                    width={160}
+                    height={160}
+                    fetchPriority="high"
+                    decoding="async"
+                    className="h-full w-full object-cover object-[50%_20%]"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-emerald-300 sm:text-base">
+                    Abdulsalam M. Abubakar
+                  </p>
+                  <p className="mt-1 text-sm leading-5 text-[#9aa6a1] lg:hidden">
+                    Software Engineer
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 hidden flex-wrap gap-x-2 gap-y-1 text-sm leading-5 text-[#9aa6a1] lg:flex">
+                <span className="whitespace-nowrap">Software Engineer</span>
+                <span className="whitespace-nowrap">· Full-stack & mobile</span>
+                <span className="whitespace-nowrap">· Blockchain & Web3</span>
               </p>
-              <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.03em] text-balance text-white sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
+              <h1 className="mt-6 max-w-3xl text-[1.875rem] font-semibold leading-[1.15] tracking-[-0.03em] text-balance text-white sm:mt-8 sm:text-4xl sm:leading-[1.12] lg:text-[3.35rem] lg:leading-[1.08]">
                 Software Engineer building web, mobile & full-stack products.
               </h1>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-pretty text-[#b7c2bd] sm:text-lg sm:leading-8">
+              <p className="mt-4 max-w-2xl text-base leading-7 text-pretty text-[#b7c2bd] sm:mt-5 sm:text-lg sm:leading-8">
                 I have 5 years of experience building software, from business platforms
                 and mobile applications to backend systems and AI-powered products. I
                 work across the stack, turning product requirements into reliable
                 applications that are ready for real-world use.
               </p>
-              <ul className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#d5deda]" aria-label="Key technologies">
-                {heroTechnologies.map((technology, index) => (
-                  <li key={technology} className="flex items-center gap-3">
-                    {index > 0 ? (
-                      <span aria-hidden="true" className="text-white/25">
-                        /
-                      </span>
-                    ) : null}
+              <ul className="mt-5 flex flex-wrap gap-2" aria-label="Key technologies">
+                {heroTechnologies.map((technology) => (
+                  <li
+                    key={technology}
+                    className="rounded-md border border-white/10 px-2.5 py-1 text-sm text-[#d5deda]"
+                  >
                     {technology}
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#projects" className={primaryCtaClassName}>
+              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+                <a href="#projects" className={cn(primaryCtaClassName, 'w-full sm:w-auto')}>
                   View My Work
                 </a>
-                <a href="#contact" className={secondaryCtaClassName}>
+                <a href="#contact" className={cn(secondaryCtaClassName, 'w-full sm:w-auto')}>
                   Get in Touch
                 </a>
               </div>
@@ -233,8 +253,8 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="order-first lg:order-none">
-              <div className="h-28 w-28 overflow-hidden rounded-full border border-white/10 bg-[#121816] sm:h-32 sm:w-32 lg:aspect-square lg:h-auto lg:w-full lg:rounded-2xl">
+            <div className="hidden lg:block">
+              <div className="aspect-square w-full overflow-hidden rounded-2xl border border-white/10 bg-[#121816]">
                 <img
                   src="/me-2.jpeg"
                   alt="Portrait of Abdulsalam M. Abubakar"
@@ -249,26 +269,24 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="highlights" className="scroll-mt-24 border-t border-white/10">
-          <div className={cn(containerClassName, 'py-8 md:py-10')}>
+        <section id="highlights" className="scroll-mt-20 border-t border-white/10">
+          <div className={cn(containerClassName, 'py-2 sm:py-8 md:py-10')}>
             <h2 className="sr-only">Professional highlights</h2>
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4 lg:gap-0">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-8 lg:grid-cols-4 lg:gap-0">
               {highlights.map((item, index) => (
                 <li
                   key={item.value}
                   className={cn(
-                    'lg:px-8',
+                    'border-b border-white/10 py-4 last:border-b-0 sm:border-b-0 sm:py-0 lg:px-8',
                     index > 0 && 'lg:border-l lg:border-white/10',
                     index === 0 && 'lg:pl-0',
                     index === highlights.length - 1 && 'lg:pr-0',
                   )}
                 >
-                  <p className="text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
+                  <p className="text-xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
                     {item.value}
                   </p>
-                  <p className="mt-2 max-w-[14rem] text-sm leading-6 text-[#b7c2bd]">
-                    {item.label}
-                  </p>
+                  <p className="mt-1 text-sm leading-6 text-[#b7c2bd] sm:mt-2">{item.label}</p>
                 </li>
               ))}
             </ul>
@@ -279,7 +297,10 @@ export default function Page() {
           <SectionIntro eyebrow="Selected work" title="Selected projects">
             <p>
               Production software I have helped build and ship. Smart contract work is in{' '}
-              <a href="#web3" className="text-white underline-offset-4 hover:underline">
+              <a
+                href="#web3"
+                className="whitespace-nowrap text-white underline-offset-4 hover:underline"
+              >
                 Blockchain &amp; Web3
               </a>.
             </p>
@@ -406,7 +427,7 @@ export default function Page() {
             </p>
           </SectionIntro>
           <div className="max-w-3xl">
-            <a href={`mailto:${email}`} className={cn(primaryCtaClassName, 'w-full break-all sm:w-auto')}>
+            <a href={`mailto:${email}`} className={cn(primaryCtaClassName, 'w-full sm:w-auto')}>
               <Mail className="size-4 shrink-0" aria-hidden="true" />
               {email}
             </a>
@@ -478,7 +499,7 @@ export default function Page() {
           )}
         >
           <p>© {new Date().getFullYear()} Abdulsalam Muhammad Abubakar.</p>
-          <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-6 gap-y-2 sm:flex sm:flex-wrap sm:items-center sm:gap-x-5">
             {navItems.map((item) => (
               <a key={item.href} href={item.href} className={textLinkClassName}>
                 {item.label}

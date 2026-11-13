@@ -45,7 +45,7 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-20 border-b border-white/10 bg-[#080b0d]/90 backdrop-blur-md supports-[backdrop-filter]:bg-[#080b0d]/75">
       <nav
-        className="mx-auto flex w-full max-w-6xl flex-col px-6 lg:px-8"
+        className="mx-auto flex w-full max-w-6xl flex-col px-5 sm:px-6 lg:px-8"
         aria-label="Main navigation"
       >
         <div className="flex items-center justify-between gap-4 py-3.5">
@@ -103,7 +103,7 @@ export function SiteNav() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="rounded-md px-1 py-2.5 text-sm font-medium text-[#c5d0cc] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
+                  className="rounded-md px-1 py-3 text-base font-medium text-[#c5d0cc] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
                   onClick={closeMenu}
                 >
                   {item.label}
