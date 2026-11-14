@@ -34,6 +34,10 @@ export type Project = {
   role?: string
   /** Shown under the external link on the detail page, when the URL needs context. */
   linkNote?: string
+  /** Extra detail-page sections. Other projects keep the standard layout. */
+  sections?: readonly { title: string; paragraphs: readonly string[] }[]
+  /** Grouped stack for the detail page. The card still uses `tags`. */
+  stack?: readonly { label: string; items: readonly string[] }[]
   category: ProjectCategory
   /** Public category line on the card. */
   typeLabel: string
@@ -304,31 +308,81 @@ const projects: readonly Project[] = [
   },
   {
     slug: 'farm-performance-intelligence',
-    title: 'Farm Performance Intelligence Platform',
+    title: 'Epipy — Agricultural Operations & Farm Intelligence Platform',
     summary:
-      'Multi-tenant SaaS for farm structures, task workflows, and operational reporting.',
+      'A web and mobile platform for farm operations, workforce coordination, task tracking, and financial records across multiple farm units.',
     description:
-      'FPIP is a multi-tenant SaaS product for farm operations, task management, performance tracking, and operational reporting. I worked on it at Epipy Limited.',
+      'Epipy is an agricultural operations platform for farms that need one set of records in the office and in the field. Executives, accountants, managers, team leads, and field workers share a web dashboard and a mobile app. Team leads can also record work for field staff who do not have a phone.',
     contribution:
-      'I built role-based access, proof-of-work submissions, document versioning, and audit logs.',
-    role: 'Software engineer on the farm-operations platform.',
-    contributions: [
-      'Built features for farm structures and operational workflows.',
-      'Implemented role-based access control.',
-      'Worked on task assignment, timelines, dependencies, and proof-of-work submissions.',
-      'Built SOP management, document versioning, and audit logs.',
-      'Contributed to operational analytics and reporting.',
+      'I built the role-based farm workflows, proxy task execution for field workers, QR reporting in the mobile app, and the financial registers.',
+    role: 'Software engineer on the web dashboard, the React Native app, and the access, field, and finance workflows.',
+    sections: [
+      {
+        title: 'Farm hierarchy and access control',
+        paragraphs: [
+          'Access is split across owners, executive directors, farm managers, accountants, team leads, and field workers. People are assigned through farm units and teams.',
+          'Team leads manage only the units assigned to them. Farm managers can oversee more than one unit. Authorization is checked in shared middleware, rather than separately on each screen.',
+        ],
+      },
+      {
+        title: 'Field tasks and proxy execution',
+        paragraphs: [
+          'Some field workers do not have a personal phone. Team leads can assign their tasks and record progress for them, including a photo as evidence.',
+          'Each action stores who performed it, so a proxy update is still attributable.',
+        ],
+      },
+      {
+        title: 'Mobile app and QR checkpoints',
+        paragraphs: [
+          'I built the companion app in React Native and Expo for iOS and Android. It uses the same backend as the web dashboard. In the field it provides a task board, camera scanning of QR checkpoints, and field reports.',
+          'The API uses JWT. The app keeps the session in secure storage.',
+        ],
+      },
+      {
+        title: 'Financial and operational records',
+        paragraphs: [
+          'The registers cover expenses, with categories and a breakdown by farm unit, plus sales and accounts receivable. Executives can review those records together.',
+        ],
+      },
     ],
-    linkNote: 'This is the Epipy company website, not a direct demo of FPIP.',
+    stack: [
+      { label: 'Web', items: ['React', 'Vite', 'Tailwind CSS', 'PWA'] },
+      {
+        label: 'Mobile',
+        items: ['React Native', 'Expo', 'Expo Router', 'TypeScript', 'expo-secure-store', 'expo-camera'],
+      },
+      { label: 'Backend', items: ['Node.js', 'Express', 'JWT', 'RBAC'] },
+      { label: 'Data', items: ['PostgreSQL', 'Supabase Storage'] },
+    ],
     category: 'production',
-    typeLabel: 'Agriculture SaaS',
-    groups: ['fullstack'],
+    typeLabel: 'Agriculture · Web and mobile',
+    groups: ['fullstack', 'web', 'mobile'],
     status: 'Production',
-    tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'RBAC'],
+    tags: [
+      'React Native',
+      'Expo',
+      'Node.js',
+      'PostgreSQL',
+      'React',
+      'Vite',
+      'Tailwind CSS',
+      'PWA',
+      'Expo Router',
+      'TypeScript',
+      'expo-secure-store',
+      'expo-camera',
+      'Express',
+      'JWT',
+      'RBAC',
+      'Supabase Storage',
+    ],
     liveUrl: 'https://www.epipy.com/',
-    liveLabel: 'Company website',
+    liveLabel: 'Visit website',
+    coverImage: '/epipy.png',
+    coverAlt:
+      'Epipy farm operations dashboard with farm structure, tasks, expenses, sales, and QR checkpoints.',
     featured: false,
-    prominence: 'secondary',
+    prominence: 'primary',
     hasDetail: true,
     sortOrder: 7,
     published: true,

@@ -108,60 +108,103 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <p className="mt-10 text-sm text-[#8d9a95]">A product screenshot is not on file yet.</p>
         )}
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-          <div>
+        {project.sections?.length ? (
+          <div className="mt-12 flex max-w-3xl flex-col gap-10">
             {project.role ? (
-              <>
+              <section>
                 <h2 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
                   My role
                 </h2>
                 <p className="mt-4 text-base leading-7 text-[#d5deda]">{project.role}</p>
-              </>
+              </section>
             ) : null}
-            {project.tags.length > 0 ? (
-              <>
-                <h2
-                  className={
-                    project.role
-                      ? 'mt-10 text-xs font-medium uppercase tracking-[0.16em] text-emerald-300'
-                      : 'text-xs font-medium uppercase tracking-[0.16em] text-emerald-300'
-                  }
-                >
-                  Technology
+            {project.sections.map((section) => (
+              <section key={section.title}>
+                <h2 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
+                  {section.title}
                 </h2>
-                <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
-                  {project.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1 text-sm text-[#d5deda]"
-                    >
-                      {tag}
+                <div className="mt-4 flex flex-col gap-4">
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="text-base leading-7 text-[#d5deda]">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+            <div>
+              {project.role ? (
+                <>
+                  <h2 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
+                    My role
+                  </h2>
+                  <p className="mt-4 text-base leading-7 text-[#d5deda]">{project.role}</p>
+                </>
+              ) : null}
+              {!project.stack && project.tags.length > 0 ? (
+                <>
+                  <h2
+                    className={
+                      project.role
+                        ? 'mt-10 text-xs font-medium uppercase tracking-[0.16em] text-emerald-300'
+                        : 'text-xs font-medium uppercase tracking-[0.16em] text-emerald-300'
+                    }
+                  >
+                    Technology
+                  </h2>
+                  <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
+                    {project.tags.map((tag) => (
+                      <li
+                        key={tag}
+                        className="rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1 text-sm text-[#d5deda]"
+                      >
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
+            </div>
+
+            {project.contributions?.length ? (
+              <div>
+                <h2 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
+                  What I worked on
+                </h2>
+                <ul className="mt-4 flex flex-col gap-3">
+                  {project.contributions.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-6 text-[#d5deda]">
+                      <span
+                        className="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-emerald-300"
+                        aria-hidden="true"
+                      />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-              </>
+              </div>
             ) : null}
           </div>
+        )}
 
-          {project.contributions?.length ? (
-            <div>
-              <h2 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
-                What I worked on
-              </h2>
-              <ul className="mt-4 flex flex-col gap-3">
-                {project.contributions.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-6 text-[#d5deda]">
-                    <span
-                      className="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-emerald-300"
-                      aria-hidden="true"
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </div>
+        {project.stack?.length ? (
+          <section className="mt-12">
+            <h2 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
+              Technology
+            </h2>
+            <dl className="mt-6 grid gap-6 sm:grid-cols-2">
+              {project.stack.map((group) => (
+                <div key={group.label}>
+                  <dt className="text-sm font-medium text-white">{group.label}</dt>
+                  <dd className="mt-2 text-sm leading-6 text-[#d5deda]">{group.items.join(', ')}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
 
         {project.repoUrl ? (
           <p className="mt-10">
