@@ -50,7 +50,7 @@ export function SiteNav() {
       >
         <div className="flex items-center justify-between gap-4 py-3.5">
           <a
-            href="#top"
+            href="/#top"
             className="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300"
             aria-label="Abdulsalam M. Abubakar home"
           >
@@ -73,7 +73,7 @@ export function SiteNav() {
                 {item.label}
               </a>
             ))}
-            <a href="#contact" className={contactClassName}>
+            <a href="/#contact" className={contactClassName}>
               Get in touch
               <ArrowRight aria-hidden="true" className="size-3.5" />
             </a>
@@ -109,7 +109,7 @@ export function SiteNav() {
                   {item.label}
                 </a>
               ))}
-              <a href="#contact" className={`${contactClassName} mt-2`} onClick={closeMenu}>
+              <a href="/#contact" className={`${contactClassName} mt-2`} onClick={closeMenu}>
                 Get in touch
                 <ArrowRight aria-hidden="true" className="size-3.5" />
               </a>

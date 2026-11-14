@@ -1,9 +1,8 @@
-import { ChevronDown, Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin, Phone } from 'lucide-react'
 
-import { ProjectCard } from '@/components/project-card'
+import { ProjectShowcase, Web3FilterLink } from '@/components/project-showcase'
 import { SiteNav } from '@/components/site-nav'
 import { GitHubIcon, LinkedInIcon } from '@/components/social-icons'
-import { getProjectsByCategory } from '@/lib/projects'
 import {
   aboutParagraphs,
   availability,
@@ -91,65 +90,55 @@ function SectionIntro({
 }
 
 function ExperienceItem({ job }: { job: Role }) {
-  const hasDetails = Boolean(job.points?.length || job.tags?.length)
-
   return (
-    <article className="py-5 sm:py-6">
-      <h3 className="text-base font-semibold text-white sm:text-lg">{job.role}</h3>
-      <p className="mt-1 text-sm text-emerald-300">{job.organization}</p>
-      {job.meta ? <p className="mt-1 text-sm text-[#8d9a95]">{job.meta}</p> : null}
-      {hasDetails ? (
-        <details className="group">
-          <summary
-            className={cn(
-              'mt-3 inline-flex cursor-pointer list-none items-center gap-1.5 rounded-md text-sm text-[#c5d0cc] hover:text-white [&::-webkit-details-marker]:hidden',
-              focusRingClassName,
-            )}
-          >
-            <span className="group-open:hidden">Show details</span>
-            <span className="hidden group-open:inline">Hide details</span>
-            <ChevronDown
-              className="size-4 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
-              aria-hidden="true"
-            />
-          </summary>
-          {job.points?.length ? (
-            <ul className="mt-4 flex max-w-3xl flex-col gap-2 text-sm leading-6 text-[#b7c2bd]">
-              {job.points.map((point) => (
-                <li key={point} className="flex gap-3">
-                  <span
-                    className="mt-2.5 size-1 shrink-0 rounded-full bg-emerald-300/70"
-                    aria-hidden="true"
-                  />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
+    <li className="flex min-w-0">
+      <article className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0e1312] p-5 transition-colors duration-200 hover:border-emerald-300/30 sm:p-6 motion-reduce:transition-none">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/80 to-transparent"
+        />
+        <header>
+          <h3 className="text-lg font-semibold tracking-[-0.02em] text-balance text-white">
+            {job.organization}
+          </h3>
+          <p className="mt-1.5 text-sm leading-6 text-[#d5deda]">{job.role}</p>
+          {job.meta ? (
+            <p className="mt-3 text-xs font-medium uppercase tracking-[0.12em] text-[#8d9a95]">
+              {job.meta}
+            </p>
           ) : null}
-          {job.tags?.length ? (
-            <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
-              {job.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded-md border border-white/10 px-2 py-1 text-xs text-[#c5d0cc]"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </details>
-      ) : null}
-    </article>
+        </header>
+        {job.points?.length ? (
+          <ul className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-5">
+            {job.points.map((point) => (
+              <li key={point} className="flex gap-3 text-sm leading-6 text-[#c5d0cc]">
+                <span
+                  className="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-emerald-300"
+                  aria-hidden="true"
+                />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        {job.tags?.length ? (
+          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">
+            {job.tags.map((tag) => (
+              <li
+                key={tag}
+                className="rounded-md bg-emerald-400/10 px-2.5 py-1 text-xs font-medium text-emerald-100"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </article>
+    </li>
   )
 }
 
 export default function Page() {
-  const productionProjects = getProjectsByCategory('production')
-  const web3Projects = getProjectsByCategory('web3')
-  const featuredProjects = productionProjects.filter((project) => project.featured)
-  const otherProjects = productionProjects.filter((project) => !project.featured)
-
   return (
     <div className="min-h-screen bg-[#080b0d] text-[#f3f6f4] selection:bg-emerald-400/30 selection:text-emerald-100">
       <a
@@ -296,32 +285,11 @@ export default function Page() {
         <Section id="projects">
           <SectionIntro eyebrow="Selected work" title="Selected projects">
             <p>
-              Production software I have helped build and ship. Smart contract work is in{' '}
-              <a
-                href="#web3"
-                className="whitespace-nowrap text-white underline-offset-4 hover:underline"
-              >
-                Blockchain &amp; Web3
-              </a>.
+              Products I have helped build: financial platforms, business systems, mobile apps,
+              and AI features. Personal smart-contract work is under Blockchain &amp; Web3.
             </p>
           </SectionIntro>
-          <p className="mb-5 text-sm font-medium uppercase tracking-[0.14em] text-[#8d9a95]">
-            Production projects
-          </p>
-          {featuredProjects.length > 0 ? (
-            <div className="grid gap-5 lg:grid-cols-2">
-              {featuredProjects.map((project) => (
-                <ProjectCard key={project.slug} project={project} />
-              ))}
-            </div>
-          ) : null}
-          {otherProjects.length > 0 ? (
-            <div className={cn('grid gap-5 md:grid-cols-2', featuredProjects.length > 0 && 'mt-5')}>
-              {otherProjects.map((project) => (
-                <ProjectCard key={project.slug} project={project} />
-              ))}
-            </div>
-          ) : null}
+          <ProjectShowcase />
         </Section>
 
         <Section id="experience">
@@ -331,11 +299,11 @@ export default function Page() {
               technology.
             </p>
           </SectionIntro>
-          <div className="divide-y divide-white/10 border-y border-white/10">
+          <ul className="grid grid-cols-1 items-start gap-4 lg:grid-cols-2 lg:gap-5">
             {experience.map((job) => (
               <ExperienceItem key={`${job.organization}-${job.role}`} job={job} />
             ))}
-          </div>
+          </ul>
         </Section>
 
         <Section id="expertise">
@@ -364,11 +332,7 @@ export default function Page() {
               interfaces.
             </p>
           </SectionIntro>
-          <div className="grid gap-5 md:grid-cols-2">
-            {web3Projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
+          <Web3FilterLink />
         </Section>
 
         <Section id="about">
@@ -505,7 +469,7 @@ export default function Page() {
                 {item.label}
               </a>
             ))}
-            <a href="#contact" className={textLinkClassName}>
+            <a href="/#contact" className={textLinkClassName}>
               Contact
             </a>
           </nav>

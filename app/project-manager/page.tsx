@@ -29,6 +29,9 @@ function ProjectPreview({ project }: { project: Project }) {
       <dl className="mt-4 flex flex-col gap-2">
         {field('Slug', project.slug)}
         {field('Category', project.category)}
+        {field('Groups', project.groups.join(', ') || 'None')}
+        {field('Placement', project.prominence)}
+        {field('Detail page', project.hasDetail ? `/projects/${project.slug}` : 'None')}
         {field('On the site', project.published ? 'Visible' : 'Hidden')}
         {field('Featured', project.featured ? 'Yes' : 'No')}
         {field('Status', project.status ?? 'Not set')}
@@ -40,7 +43,7 @@ function ProjectPreview({ project }: { project: Project }) {
             ? `${project.images.length} file${project.images.length === 1 ? '' : 's'}`
             : 'None',
         )}
-        {field('Live URL', project.liveUrl ?? 'Not set')}
+        {field('Live URL', project.liveUrl ? `${project.liveLabel ?? 'Link'}: ${project.liveUrl}` : 'Not set')}
         {field('Repository', project.repoUrl ?? 'Not set')}
         {field('Case study', project.caseStudyUrl ?? 'Not set')}
         {field('Contract notes', project.chainNotes ?? 'Not set')}

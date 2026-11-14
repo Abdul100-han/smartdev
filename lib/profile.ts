@@ -15,13 +15,13 @@ export const linkedInUrl =
   'https://www.linkedin.com/in/abdulsalam-muhammad-abubakar-90375a1ba'
 
 export const navItems = [
-  { label: 'Highlights', href: '#highlights' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Expertise', href: '#expertise' },
-  { label: 'Web3', href: '#web3' },
-  { label: 'About', href: '#about' },
-  { label: 'Education', href: '#education' },
+  { label: 'Highlights', href: '/#highlights' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Expertise', href: '/#expertise' },
+  { label: 'Web3', href: '/#web3' },
+  { label: 'About', href: '/#about' },
+  { label: 'Education', href: '/#education' },
 ] as const
 
 export const heroTechnologies = [
@@ -171,8 +171,9 @@ export const experience: readonly Role[] = [
     organization: 'Epipy Limited',
     meta: 'Abuja, Nigeria',
     points: [
-      'Built the Farm Performance Intelligence Platform, a multi-tenant SaaS product for farm operations and performance analytics.',
-      'Worked on farm structures, role-based access, task workflows, proof-of-work submissions, SOP repositories, document versioning, audit logging, and operational dashboards.',
+      'Built features for managing farm structures and operations on the Farm Performance Intelligence Platform, a multi-tenant SaaS product.',
+      'Implemented role-based access control, task workflows with timelines and dependencies, and proof-of-work submissions.',
+      'Added SOP management, document versioning, audit logs, and operational analytics.',
     ],
     tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'RBAC'],
   },
@@ -181,29 +182,31 @@ export const experience: readonly Role[] = [
     organization: 'STEDi-AI Framework',
     meta: 'Doha, Qatar · Contract',
     points: [
-      'Built and maintained a FastAPI backend for security technical debt analysis across OpenAI, Gemini, and Hugging Face.',
-      'Worked on multi-provider evaluation logic, security calculations, and production JWT/OAuth authentication.',
+      'Built and maintained the Python and FastAPI backend for a framework that evaluates security technical debt.',
+      'Wrote evaluation workflows for OpenAI, Gemini, and Hugging Face, including the security technical debt calculations.',
+      'Implemented API authentication and security with JWT and OAuth.',
     ],
-    tags: ['Python', 'FastAPI', 'Next.js', 'PostgreSQL', 'OpenAI', 'Gemini'],
+    tags: ['Python', 'FastAPI', 'Next.js', 'PostgreSQL', 'OpenAI', 'Gemini', 'Hugging Face'],
   },
   {
     role: 'Mobile App Developer / Lead Mobile Engineer',
     organization: 'Iltizaam',
     meta: 'Lagos, Nigeria · Contract',
     points: [
-      'Led the React Native and Expo application, including goals, daily planning, mood tracking, focus mode, reminders, financial goals, dashboards, authentication, and notifications.',
-      'Integrated the mobile app with the Node.js and Express API.',
-      'Published the Android application on Google Play.',
+      'Led the ILTIZAAM AI mobile app in React Native and Expo, including goals, daily planning, mood tracking, focus mode, reminders, financial goals, and dashboards.',
+      'Integrated the app with the Node.js and Express API, including authentication and notifications.',
+      'Published the Android app on Google Play.',
     ],
-    tags: ['React Native', 'Expo', 'TypeScript', 'Node.js'],
+    tags: ['React Native', 'Expo', 'TypeScript', 'Node.js', 'Express'],
   },
   {
     role: 'Software Engineer',
     organization: 'Vennix OS',
     meta: 'Kano, Nigeria · Contract',
     points: [
-      'Worked across the frontend, backend, database, authentication, and business logic of an operations platform covering CRM, finance, HR, payroll, projects, and reporting.',
-      'Implemented payment processing, document generation, customer portals, notifications, granular permissions, and AI-powered business features.',
+      'Built frontend and backend features for an operations platform covering CRM, sales, inventory, procurement, finance, HR, payroll, projects, and reporting.',
+      'Implemented payments, document generation, customer portals, notifications, and access permissions.',
+      'Contributed to AI features in the product and to application workflows.',
     ],
     tags: ['React', 'Next.js', 'Node.js', 'MySQL'],
   },
@@ -211,62 +214,78 @@ export const experience: readonly Role[] = [
     role: 'Software Engineer',
     organization: 'Alkhair Press',
     points: [
-      'Worked on the frontend, backend integrations, and AI customer support, including RAG-based retrieval, semantic search, and conversation management.',
-      'Contributed to security improvements on the platform.',
+      'Developed frontend features and backend integrations.',
+      'Built parts of the customer support system, including retrieval-augmented generation, semantic search, and conversation management.',
+      'Improved security in the application.',
     ],
     tags: ['Next.js', 'TypeScript', 'Node.js', 'MySQL', 'OpenAI'],
   },
-  // TODO: Add a verified description of the work at Dan Ziyal Academy & Consultancy.
+  // Stack is not listed here. The project record does not confirm it yet.
   {
     role: 'Software Engineer',
     organization: 'Dan Ziyal Academy & Consultancy',
+    points: [
+      'Built administrator, staff, and client dashboards for the academy and consultancy platform.',
+      'Implemented authentication, role-based access, and document management, including sharing permissions, public links, and version history.',
+      'Set up project and task tracking, invoices, quotations, Paystack payments, and PDF generation.',
+    ],
   },
   {
     role: 'Software Engineer / Technical Lead',
     organization: 'FixKano',
     meta: 'Kano, Nigeria · Contract',
     points: [
-      'Led technical delivery of a civic reporting platform across the mobile application, web interface, backend integration, testing, and deployment.',
-      'The product covers photo-based reports, geolocation, user accounts, issue tracking, status updates, and administrative workflows.',
+      'Led technical development of the mobile app, web interface, and backend integration for a civic reporting platform.',
+      'Built photo-based incident reporting with geolocation, user accounts, and issue tracking.',
+      'Implemented report submission, status updates, and administrative management, and supported testing and deployment.',
     ],
     tags: ['React Native', 'React', 'Node.js', 'Geolocation'],
   },
-  // TODO: Add a verified description of the work at Shareef NiceHome Limited.
   {
     role: 'Software Engineer',
     organization: 'Shareef NiceHome Limited',
+    points: [
+      'Built product and inventory management for a sales platform, including stock movements and point-of-sale workflows.',
+      'Added customer records and invoicing.',
+      'Implemented reporting, authentication, and role-based access.',
+    ],
+    tags: ['Next.js', 'React', 'TypeScript', 'Node.js', 'Express', 'MySQL'],
   },
-  // TODO: Add a verified description of the work at Semveta Technologies.
+  // No project write-up in the repository, so this entry is title and organization only.
   {
     role: 'Web Developer',
     organization: 'Semveta Technologies',
   },
-  // TODO: Add a verified description of the work at Rikruta.
+  // No project write-up in the repository, so this entry is title and organization only.
   {
     role: 'Software Engineer',
     organization: 'Rikruta',
   },
-  // TODO: Add a verified description of the work at Evault.
+  // No project write-up in the repository, so this entry is title and organization only.
   {
     role: 'Web & Mobile Developer / Frontend Engineer',
     organization: 'Evault',
   },
-  // TODO: Add a verified description of the work at Petabyte Esport.
+  // No project write-up in the repository, so this entry is title and organization only.
   {
     role: 'Web Developer',
     organization: 'Petabyte Esport',
   },
-  // TODO: Add a verified description of the work at Techivate Technologies.
+  // No project write-up in the repository, so this entry is title and organization only.
   {
     role: 'Frontend Engineer',
     organization: 'Techivate Technologies',
   },
-  // TODO: Add a verified description of the work at Enovate Lab Limited.
   {
     role: 'Community & Training Lead',
     organization: 'Enovate Lab Limited',
+    points: [
+      'Supported technology communities, including training and developer participation.',
+      'Organized technical events, workshops, and learning activities.',
+      'Worked with community members, speakers, and partners.',
+    ],
   },
-  // TODO: Add a verified description of the work at Arusco ICT Solutions.
+  // No project write-up in the repository, so this entry is title and organization only.
   {
     role: 'Web Developer',
     organization: 'Arusco ICT Solutions',

@@ -8,12 +8,17 @@ Project changes live in this Git repository. Push them to GitHub and Vercel depl
 | --- | --- |
 | Project text, links, order, and image paths | `lib/projects.ts` |
 | Profile, experience, and skills | `lib/profile.ts` |
-| Screenshot files | `public/projects/` |
-| Production cards | Homepage section `#projects` |
-| Blockchain cards | Homepage section `#web3` |
+| Screenshot files | `public/` or `public/projects/` |
+| Project cards and filters | Homepage section `#projects` |
+| Project detail pages | `/projects/[slug]` when `hasDetail` is true |
+| Blockchain note | Homepage section `#web3`, which filters the project list |
 | Local preview, including hidden drafts | `http://localhost:3000/project-manager` while `npm run dev` is running |
 
-The homepage calls `getPublicProjects()` and shows entries with `published: true`. A card shows `summary`, `contribution` when set, `status`, the technology `tags`, and a link only when that URL is set.
+The homepage calls `getPublicProjects()` and shows entries with `published: true`. A card shows the screenshot or a labeled placeholder, `typeLabel`, `summary`, `contribution` when set, the first four `tags` when a detail page exists, and a link only when that URL is set. `hasDetail: true` adds a View details link to `/projects/[slug]`.
+
+`groups` controls the filters: `fullstack`, `web`, `mobile`, `ai`, and `web3`. A project can list more than one. `prominence` is `featured`, `primary`, or `secondary`. Featured cards sit first. Projects without a screenshot use `secondary` so they sit under “More projects”.
+
+`liveLabel` is the link text. Use “Open application”, “Visit website”, or “Company website” so a company homepage is not described as a product demo. Put any needed caveat in `linkNote`. It appears on the detail page only.
 
 If `coverImage` and `images` are both empty, the card shows a labeled placeholder. That placeholder is not a screenshot. Do not point `coverImage` at a stock image or an illustration and leave the alt text calling it a screenshot.
 
@@ -60,13 +65,13 @@ The cover’s alternative text is the project title followed by “screenshot”
 
 Set `published` to `true` when the card should appear on the homepage. `published: false` keeps the entry in the file and hides it from visitors. You can still see it at `/project-manager` during local development.
 
-`category: 'production'` places the card under Selected projects. `category: 'web3'` places it under Blockchain & Web3.
+`category: 'production'` or `category: 'web3'` is kept for the local preview. Visitors filter with `groups`, not this field.
 
 `sortOrder` controls order inside that group. Lower numbers come first.
 
-`featured: true` gives a production project the larger slot at the top of Selected projects. It does not add a public “Featured” label.
+`featured: true` matches `prominence: 'featured'`. It does not add a public “Featured” label.
 
-Four production drafts are already in the file with `published: false`: Dan Ziyal Academy & Consultancy, Shareef NiceHome, STEDi-AI Framework, and Invoice Management Platform. Replace the TODO summary before setting `published` to `true`.
+Invoice Management Platform is still unpublished. Replace its TODO summary before setting `published` to `true`.
 
 ## Update a project
 
