@@ -21,7 +21,7 @@ export const navItems = [
   { label: 'Expertise', href: '/#expertise' },
   { label: 'Web3', href: '/#web3' },
   { label: 'About', href: '/#about' },
-  { label: 'Education', href: '/#education' },
+  { label: 'Training', href: '/#education' },
 ] as const
 
 export const heroTechnologies = [
@@ -285,18 +285,7 @@ export const experience: readonly Role[] = [
       'Worked with community members, speakers, and partners.',
     ],
   },
-  // No project write-up in the repository, so this entry is title and organization only.
-  {
-    role: 'Web Developer',
-    organization: 'Arusco ICT Solutions',
-  },
 ]
-
-export const formalEducation = {
-  qualification: 'Higher National Diploma (HND)',
-  field: 'Mechanical Engineering (Plant & Power)',
-  school: 'Kano State Polytechnic, Kano, Nigeria',
-}
 
 // TODO: Confirm that the Alchemy University program is still in progress.
 export const training = [

@@ -8,7 +8,6 @@ import {
   availability,
   email,
   experience,
-  formalEducation,
   githubUrl,
   heroTechnologies,
   highlights,
@@ -345,40 +344,18 @@ export default function Page() {
         </Section>
 
         <Section id="education">
-          <SectionIntro eyebrow="Background" title="Education and professional development">
-            <p>
-              An HND in Mechanical Engineering, and blockchain training from Cyfrin
-              Updraft and Alchemy University.
-            </p>
-          </SectionIntro>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-            <article>
-              <h3 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
-                Formal education
-              </h3>
-              <h4 className="mt-4 text-xl font-semibold tracking-[-0.02em] text-white">
-                {formalEducation.qualification}
-              </h4>
-              <p className="mt-2 text-sm leading-6 text-[#d5deda]">{formalEducation.field}</p>
-              <p className="mt-2 text-sm leading-6 text-[#8d9a95]">{formalEducation.school}</p>
-            </article>
-            <article>
-              <h3 className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-300">
-                Professional development
-              </h3>
-              <div className="mt-4 divide-y divide-white/10 border-t border-white/10">
-                {training.map((item) => (
-                  <div key={item.provider} className="py-5 first:pt-5">
-                    <h4 className="text-lg font-semibold text-white">{item.provider}</h4>
-                    <p className="mt-2 text-sm leading-6 text-[#d5deda]">{item.program}</p>
-                    {'status' in item && item.status ? (
-                      <p className="mt-2 text-sm text-emerald-300">{item.status}</p>
-                    ) : null}
-                    <p className="mt-2 text-sm leading-6 text-[#8d9a95]">{item.topics}</p>
-                  </div>
-                ))}
+          <SectionIntro eyebrow="Training" title="Professional development" />
+          <div className="max-w-3xl divide-y divide-white/10 border-t border-white/10">
+            {training.map((item) => (
+              <div key={item.provider} className="py-5">
+                <h3 className="text-lg font-semibold text-white">{item.provider}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#d5deda]">{item.program}</p>
+                {'status' in item && item.status ? (
+                  <p className="mt-2 text-sm text-emerald-300">{item.status}</p>
+                ) : null}
+                <p className="mt-2 text-sm leading-6 text-[#8d9a95]">{item.topics}</p>
               </div>
-            </article>
+            ))}
           </div>
         </Section>
 
