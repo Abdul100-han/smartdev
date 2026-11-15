@@ -231,17 +231,6 @@ export const experience: readonly Role[] = [
     ],
   },
   {
-    role: 'Software Engineer / Technical Lead',
-    organization: 'FixKano',
-    meta: 'Kano, Nigeria · Contract',
-    points: [
-      'Led technical development of the mobile app, web interface, and backend integration for a civic reporting platform.',
-      'Built photo-based incident reporting with geolocation, user accounts, and issue tracking.',
-      'Implemented report submission, status updates, and administrative management, and supported testing and deployment.',
-    ],
-    tags: ['React Native', 'React', 'Node.js', 'Geolocation'],
-  },
-  {
     role: 'Software Engineer',
     organization: 'Shareef NiceHome Limited',
     points: [
